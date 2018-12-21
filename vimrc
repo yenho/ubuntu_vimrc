@@ -15,19 +15,6 @@
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-" alternatively, pass a path where Vundle should install plugins
-"let path = '~/some/path/here'
-"call vundle#rc(path)
-
-" let Vundle manage Vundle, required
-"Plugin 'gmarik/vundle'
-
 " Vim5 and later versions support syntax highlighting. Uncommenting the
 " following enables syntax highlighting by default.
 if has("syntax")
@@ -82,33 +69,18 @@ let Tlist_Use_Right_Window = 1          " 讓taglist窗口在右側顯示
 "  source /etc/vim/vimrc.local
 "endif
 
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#begin()
-
-"Plugin 'gmarik/Vundle.vim'
-
-"call vundle#end()            " required
-"filetype plugin indent on    " required
-
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 "autocmd FileType c setlocal shiftwidth=2 softtabstop=4
 
@@ -131,26 +103,13 @@ set cscopetag
 set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
 endif
 
-" https://blog.gtwang.org/linux/vundle-vim-bundle-plugin-manager/
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-
+" https://blog.listnukira.com/Vim-Solarized-color-theme/
 syntax enable
 set background=dark
-"set background=light
 set t_Co=16
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
+colorscheme vim-monokai-tasty
 "set background=light
 
 "set t_Co=256
@@ -179,6 +138,8 @@ map <f7> <ESC>:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=da
 " map <f5> :set hls!<BAR>set hls?<CR>
 " map <f2> :map<CR>
 map <f6> :split<CR>
+map <F3> :execute "lvimgrep /" . expand("<cword>") . "/gj **/*" <Bar> lw<CR>
+
 map <C-Right> :tabnext<CR>
 map <C-Left> :tabprevious<CR>
 " map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
@@ -186,3 +147,6 @@ map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
 
 " turn on NERDTree
 nnoremap <silent> <F5> :NERDTree<CR>
+
+vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
